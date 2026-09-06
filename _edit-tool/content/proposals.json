@@ -12,7 +12,7 @@
       },
       {
         "k": "想定ハード",
-        "v": "Nintendo Switch ／ PC"
+        "v": "PC"
       },
       {
         "k": "1プレイ時間",
@@ -33,7 +33,7 @@
     ],
     "figure": {
       "viewBox": "0 0 640 132",
-      "rawSvg": "<g fill=\"none\" stroke=\"#E3A44A\" stroke-width=\"1\">\n              <rect x=\"10\" y=\"34\" width=\"168\" height=\"46\"/>\n              <rect x=\"236\" y=\"34\" width=\"168\" height=\"46\"/>\n              <rect x=\"462\" y=\"34\" width=\"168\" height=\"46\"/>\n            </g>\n            <g fill=\"#E3A44A\" font-family=\"'BIZ UDPGothic',sans-serif\" font-size=\"13\" text-anchor=\"middle\">\n              <text x=\"94\" y=\"62\">見られていない範囲を推測</text>\n              <text x=\"320\" y=\"62\">液体化して移動</text>\n              <text x=\"546\" y=\"62\">視線の配置が変わる</text>\n            </g>\n            <g fill=\"#9AA6BF\" font-family=\"'JetBrains Mono',monospace\" font-size=\"15\" text-anchor=\"middle\">\n              <text x=\"207\" y=\"63\">&#8594;</text>\n              <text x=\"433\" y=\"63\">&#8594;</text>\n            </g>\n            <g fill=\"none\" stroke=\"#2B3A5C\" stroke-width=\"1\">\n              <path d=\"M546 84 L546 108 L94 108 L94 86\"/>\n            </g>\n            <path d=\"M94 78 L90 86 L98 86 Z\" fill=\"#2B3A5C\"/>\n            <text x=\"320\" y=\"124\" fill=\"#9AA6BF\" font-family=\"'BIZ UDPGothic',sans-serif\" font-size=\"11\" text-anchor=\"middle\">情報は常に不完全なまま更新される</text>",
+      "rawSvg": "<g fill=\"none\" stroke=\"#4FB8DE\" stroke-width=\"1\">\n              <rect x=\"10\" y=\"34\" width=\"168\" height=\"46\"/>\n              <rect x=\"236\" y=\"34\" width=\"168\" height=\"46\"/>\n              <rect x=\"462\" y=\"34\" width=\"168\" height=\"46\"/>\n            </g>\n            <g fill=\"#4FB8DE\" font-family=\"'BIZ UDPGothic',sans-serif\" font-size=\"13\" text-anchor=\"middle\">\n              <text x=\"94\" y=\"62\">見られていない範囲を推測</text>\n              <text x=\"320\" y=\"62\">液体化して移動</text>\n              <text x=\"546\" y=\"62\">視線の配置が変わる</text>\n            </g>\n            <g fill=\"#9AA6BF\" font-family=\"'JetBrains Mono',monospace\" font-size=\"15\" text-anchor=\"middle\">\n              <text x=\"207\" y=\"63\">&#8594;</text>\n              <text x=\"433\" y=\"63\">&#8594;</text>\n            </g>\n            <g fill=\"none\" stroke=\"#2B3A5C\" stroke-width=\"1\">\n              <path d=\"M546 84 L546 108 L94 108 L94 86\"/>\n            </g>\n            <path d=\"M94 78 L90 86 L98 86 Z\" fill=\"#2B3A5C\"/>\n            <text x=\"320\" y=\"124\" fill=\"#9AA6BF\" font-family=\"'BIZ UDPGothic',sans-serif\" font-size=\"11\" text-anchor=\"middle\">情報は常に不完全なまま更新される</text>",
       "caption": "コアループ ／ プレイヤーは「見られていない範囲」を最後まで確定できない"
     },
     "sections": [
@@ -63,6 +63,8 @@
       "label": "この企画のもとになった失敗",
       "href": "recovered-001.html",
       "text": "recovered_001_ボツ企画：箱庭の話.txt　→"
-    }
+    },
+    "figureCaption": "コアループ ／ プレイヤーは「見られていない範囲」を最後まで確定できない",
+    "figureSource": "self"
   }
 ]

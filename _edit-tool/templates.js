@@ -317,7 +317,7 @@ function renderIndex(content) {
     '            <rect x="22" y="16" width="3" height="4" fill="#7FE3A8"/><rect x="16" y="22" width="6" height="1" fill="#7FE3A8"/>\n' +
     '            <rect x="17" y="28" width="6" height="3" fill="#E8EAF0"/><rect x="10" y="31" width="20" height="21" fill="#16223A"/>\n' +
     '            <rect x="17" y="31" width="6" height="11" fill="#E8EAF0"/><rect x="18" y="33" width="4" height="3" fill="#0E1626"/>\n' +
-    '            <rect x="19" y="38" width="2" height="2" fill="#E3A44A"/><rect x="10" y="31" width="1" height="21" fill="#2B3A5C"/>\n' +
+    '            <rect x="19" y="38" width="2" height="2" fill="#4FB8DE"/><rect x="10" y="31" width="1" height="21" fill="#2B3A5C"/>\n' +
     '            <rect x="29" y="31" width="1" height="21" fill="#2B3A5C"/><rect x="14" y="34" width="1" height="18" fill="#2B3A5C"/>\n' +
     '            <rect x="25" y="34" width="1" height="18" fill="#2B3A5C"/><rect x="4" y="38" width="6" height="4" fill="#E8EAF0"/>\n' +
     '            <rect x="3" y="42" width="7" height="10" fill="#E8EAF0"/><rect x="3" y="45" width="7" height="1" fill="#9AA6BF"/>\n' +

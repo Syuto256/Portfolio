@@ -6,7 +6,7 @@
 :root{
   --navy:#0E1626; --panel:#16223A; --panel-2:#111C31;
   --line:#2B3A5C; --line-2:#1E2C48;
-  --amber:#E3A44A; --amber-hi:#F0B95F; --term:#7FE3A8;
+  --amber:#4FB8DE; --amber-hi:#7ACDEA; --term:#7FE3A8;
   --fg:#E8EAF0; --muted:#9AA6BF;
   --mono:"JetBrains Mono",monospace;
   --jp:"BIZ UDPGothic",sans-serif;
@@ -171,7 +171,7 @@ button{font:inherit; color:inherit; background:none; border:none; cursor:pointer
 .cfg.open{display:block}
 .cfg h2{font-family:var(--dot);font-size:16px;color:var(--amber);margin:0 0 var(--s3);font-weight:400}
 .cfg label{display:flex;align-items:center;gap:10px;font-size:13px;padding:6px 0;cursor:pointer}
-.cfg input{width:16px;height:16px;accent-color:#E3A44A}
+.cfg input{width:16px;height:16px;accent-color:#4FB8DE}
 .cfg .note{font-size:11px;color:var(--muted);margin:var(--s3) 0 0}
 .tw{visibility:hidden}
 .tw.done{visibility:visible}
