@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>深夜遊戯 コンテンツ編集ツール</title>
+<link rel="stylesheet" href="editor.css">
+</head>
+<body>
+<header class="topbar">
+  <span class="brand">深夜遊戯 編集ツール</span>
+  <a class="viewsite" href="/site/index.html" target="_blank" rel="noopener">サイトを確認する ↗</a>
+</header>
+
+<div class="shell">
+  <nav class="tabs" id="tabs">
+    <button data-tab="proposals">企画書</button>
+    <button data-tab="analyses">ゲーム分析</button>
+    <button data-tab="works">作ったゲーム</button>
+    <button data-tab="recovered">ボツ企画・失敗談</button>
+    <button data-tab="profile">プロフィール</button>
+    <button data-tab="faq">FAQ</button>
+    <button data-tab="license">ライセンス表記</button>
+  </nav>
+  <main id="app" class="app"></main>
+</div>
+
+<div id="toast" class="toast" hidden></div>
+
+<script src="editor.js"></script>
+</body>
+</html>

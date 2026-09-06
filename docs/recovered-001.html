@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>箱庭の話 ／ ボツ企画 ／ 深夜遊戯</title>
+<meta name="description" content="住人を助けるか、資源を優先するかを毎朝選ばせるゲーム。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=JetBrains+Mono:wght@400;500&family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="scan" aria-hidden="true"></div>
+
+<header class="bar">
+  <a class="logo" href="index.html">深夜遊戯</a>
+  <span class="hours">23:00 - LATE</span>
+  <nav class="nav" aria-label="サイト内ナビゲーション">
+    <a href="proposal-001.html">企画書</a>
+    <a href="analysis-001.html">分析</a>
+    <a href="works.html">作ったゲーム</a>
+    <a href="recovered.html" aria-current="page">ボツ企画・失敗談</a>
+    <a href="profile.html">プロフィール</a>
+    <a href="faq.html">FAQ</a>
+  </nav>
+  <div class="right">
+    <button id="cfgBtn" aria-expanded="false" aria-controls="cfg">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7 1h2v2H7zM7 13h2v2H7zM1 7h2v2H1zM13 7h2v2h-2zM3 3h2v2H3zM11 3h2v2h-2zM3 11h2v2H3zM11 11h2v2h-2zM6 6h4v4H6z"/></svg>設定</button>
+    <a href="profile.html#contact">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1 3h14v10H1zM2 4v1h12V4zM3 6l5 4 5-4v1l-5 4-5-4z"/></svg>連絡先</a>
+  </div>
+</header>
+
+<section class="cfg" id="cfg" hidden>
+  <h2>設定</h2>
+  <label><input type="checkbox" id="optScan">走査線を表示する</label>
+  <label><input type="checkbox" id="optTw">文字を1文字ずつ表示する</label>
+  <label><input type="checkbox" id="optHc">高コントラスト表示にする</label>
+  <p class="note">設定は保存されません。このページを離れると初期状態に戻ります。</p>
+</section>
+
+<main class="wrap">
+  <div class="top">
+    <div class="pane">
+      <p class="crumb"><a href="index.html">C:\&gt;</a> <a href="recovered.html">recovered</a> / <b>recovered_001</b></p>
+
+      <article class="doc">
+        <h1 class="doc-title">箱庭の話</h1>
+        <p class="doc-lead">住人を助けるか、資源を優先するかを毎朝選ばせるゲーム。</p>
+
+        <table class="spec">
+          <tbody>
+            <tr><th>到達点</th><td>企画書＋紙プロト ／ 個人 ／ 3週間</td></tr>
+            <tr><th>失敗の種類</th><td>A. 企画の筋</td></tr>
+            <tr><th>停止の判断</th><td>紙プロトを友人4人にプレイしてもらった段階で、3人が2日目以降ずっと同じ選択を続けた。選択が形骸化していると判断し、自分で止めた。</td></tr>
+          </tbody>
+        </table>
+
+        <h2>読み違え</h2>
+        <p>当時は「二択に重みがあれば毎回悩む」と思っていた。実際は、初日に決めた方針がそのまま最適解であり続けたため、2日目以降は考える必要がなくなっていた。原因は、選択のたびに状況が変わるかどうかを確かめていなかったこと。選択肢の重さばかり設計して、選択の前提条件を動かす仕組みを作っていなかった。</p>
+
+        <h2>転用先</h2>
+        <p>現行企画『現行犯で行こう。』のコアループでは、1回動くたびに視線の配置が変わる仕組みを先に組んだ。この失敗から逆算した設計になっている。</p>
+
+        <div class="actions">
+          <a class="cta" href="proposal-001.html">proposal_001 を見る</a>
+          <a class="cta sub" href="recovered.html">書庫に戻る</a>
+        </div>
+      </article>
+    </div>
+
+    <div class="side">
+      <div class="pane">
+        <div class="sec-h"><h2>書類棚</h2><span class="en">/ Documents</span></div>
+        <p class="sec-sub">最近の文書</p>
+        <ul class="files">
+          <li><a href="proposal-001.html"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 1h7l3 3v11H3zM4 2v12h8V5H9V2z"/></svg><span class="fn">proposal_001_現行犯で行こう.pdf</span><span class="dt">08-30</span></a></li>
+          <li><a href="analysis-001.html"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 1h7l3 3v11H3zM4 2v12h8V5H9V2z"/></svg><span class="fn">analysis_001_情報が足りないと面白いのか.txt</span><span class="dt">08-24</span></a></li>
+          <li><a href="recovered-001.html" aria-current="page"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 1h7l3 3v11H3zM4 2v12h8V5H9V2z"/></svg><span class="fn">recovered_001_ボツ企画：箱庭の話.txt</span><span class="dt">08-20</span></a></li>
+          <li><a href="profile.html"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 1h7l3 3v11H3zM4 2v12h8V5H9V2z"/></svg><span class="fn">profile.dat</span><span class="dt">08-18</span></a></li>
+        </ul>
+        <a class="openall" href="#">書類棚をすべて開く　→</a>
+      </div>
+
+      <div class="pane">
+        <div class="sec-h"><h2>システム時刻</h2></div>
+        <div class="clock">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13"/><path d="M16 8v8l6 3"/></svg>
+          <div>
+            <div class="hm" id="hm">--:--</div>
+            <div class="ymd" id="ymd">---------- ---</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <span>&copy; 2026 山田 太郎 ／ 深夜遊戯</span>
+  <span class="mid"><a href="license.html">ライセンス</a><a href="#">更新履歴</a></span>
+  <span class="tail">C:\&gt; 深夜遊戯 / recovered_001</span>
+</footer>
+
+<script src="app.js" defer></script>
+</body>
+</html>

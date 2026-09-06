@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>よくある質問 ／ 深夜遊戯</title>
+<meta name="description" content="ポートフォリオについてよくいただく質問への回答。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=JetBrains+Mono:wght@400;500&family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="scan" aria-hidden="true"></div>
+
+<header class="bar">
+  <a class="logo" href="index.html">深夜遊戯</a>
+  <span class="hours">23:00 - LATE</span>
+  <nav class="nav" aria-label="サイト内ナビゲーション">
+    <a href="proposal-001.html">企画書</a>
+    <a href="analysis-001.html">分析</a>
+    <a href="works.html">作ったゲーム</a>
+    <a href="recovered.html">ボツ企画・失敗談</a>
+    <a href="profile.html">プロフィール</a>
+    <a href="faq.html" aria-current="page">FAQ</a>
+  </nav>
+  <div class="right">
+    <button id="cfgBtn" aria-expanded="false" aria-controls="cfg">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7 1h2v2H7zM7 13h2v2H7zM1 7h2v2H1zM13 7h2v2h-2zM3 3h2v2H3zM11 3h2v2h-2zM3 11h2v2H3zM11 11h2v2h-2zM6 6h4v4H6z"/></svg>設定</button>
+    <a href="profile.html#contact">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1 3h14v10H1zM2 4v1h12V4zM3 6l5 4 5-4v1l-5 4-5-4z"/></svg>連絡先</a>
+  </div>
+</header>
+
+<section class="cfg" id="cfg" hidden>
+  <h2>設定</h2>
+  <label><input type="checkbox" id="optScan">走査線を表示する</label>
+  <label><input type="checkbox" id="optTw">文字を1文字ずつ表示する</label>
+  <label><input type="checkbox" id="optHc">高コントラスト表示にする</label>
+  <p class="note">設定は保存されません。このページを離れると初期状態に戻ります。</p>
+</section>
+
+<main class="wrap">
+  <div class="pane">
+      <p class="crumb"><a href="index.html">C:\&gt;</a> <b>faq</b></p>
+
+    <h1 class="doc-title">よくある質問</h1>
+    <p class="doc-lead">質問を選ぶと回答が開きます。</p>
+    <p class="brown-note" data-typewriter>
+      <span>&gt; 回答を用意している質問は8件です。</span>
+    </p>
+
+    <div class="faq">
+      <details><summary>企画書はどれから読めばいいですか？</summary><p class="a">proposal_001「現行犯で行こう。」からお願いします。最も作り込んだ1本で、プレイテストの実測データも入っています。時間が5分あれば、書類棚の上から順にPDFを開いていただければ全体が掴めます。</p></details>
+      <details><summary>なぜ「深夜遊戯」という名前なのですか？</summary><p class="a">深夜は、誰にも急かされず自分の判断だけで選べる時間だからです。このサイトのテーマである「不完全な情報の中で選択させる」という考え方と、自分が実際にものを作っている時間帯が重なっています。</p></details>
+      <details><summary>ブラウン（案内役）は何ですか？</summary><p class="a">この端末に常駐している案内プログラムという設定です。自分の分身ではなく、自分が作ったものとして置いています。ビジュアルは現在、画像生成AIで制作した暫定版です。詳細はライセンスページに記載しています。</p></details>
+      <details><summary>ボツ企画をわざわざ載せているのはなぜですか？</summary><p class="a">成功した企画だけを見ても、判断の過程が分からないと考えたためです。何を賭けて、何を読み違えたかを残しておくほうが、今の自分の考え方が伝わると思っています。</p></details>
+      <details><summary>チーム制作と個人制作、どちらが多いですか？</summary><p class="a">企画書は個人、実装を伴うものはチームが多いです。チーム制作では進行管理を担当することが多く、その経緯はプロフィールに書いています。</p></details>
+      <details><summary>ゲーム分析はどういう基準で選んでいますか？</summary><p class="a">「このゲームはプレイヤーに何を選ばせているか」という一つの軸で、ジャンルを変えながら書いています。今後は、その軸が当てはまりにくいジャンル（脳トレやパーティゲーム）も扱う予定です。</p></details>
+      <details><summary>企画書のPDFは印刷しても読めますか？</summary><p class="a">はい。A4横向きで作成しており、白地に黒文字です。このサイトの配色とは別に、印刷を前提としたレイアウトにしています。</p></details>
+      <details><summary>連絡はどこに送ればいいですか？</summary><p class="a">プロフィールページの連絡先に記載しているメールアドレスにお願いします。就職活動用に用意したアドレスです。</p></details>
+    </div>
+
+    <p class="doc-lead" style="margin-top:24px;font-size:12px;color:#9AA6BF">
+      ここにない質問は、<a href="profile.html#contact">連絡先</a>までお願いします。
+    </p>
+  </div>
+</main>
+
+<footer>
+  <span>&copy; 2026 山田 太郎 ／ 深夜遊戯</span>
+  <span class="mid"><a href="license.html">ライセンス</a><a href="#">更新履歴</a></span>
+  <span class="tail">C:\&gt; 深夜遊戯 / faq</span>
+</footer>
+
+<script src="app.js" defer></script>
+</body>
+</html>

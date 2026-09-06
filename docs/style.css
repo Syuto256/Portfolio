@@ -1,0 +1,288 @@
+/* ===========================================================
+   深夜遊戯 共通スタイル
+   実装仕様書 v1.0 準拠
+   =========================================================== */
+
+:root{
+  --navy:#0E1626; --panel:#16223A; --panel-2:#111C31;
+  --line:#2B3A5C; --line-2:#1E2C48;
+  --amber:#E3A44A; --amber-hi:#F0B95F; --term:#7FE3A8;
+  --fg:#E8EAF0; --muted:#9AA6BF;
+  --mono:"JetBrains Mono",monospace;
+  --jp:"BIZ UDPGothic",sans-serif;
+  --dot:"DotGothic16",sans-serif;
+  --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px; --s7:48px;
+}
+:root.hc{ --fg:#FFFFFF; --muted:#C9D2E6; --line:#4A5F8C; --line-2:#33456B; }
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--navy); color:var(--fg);
+  font-family:var(--mono),var(--jp);
+  font-size:16px; line-height:1.9;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--amber); text-decoration:none}
+a:hover{color:var(--amber-hi)}
+:focus-visible{outline:2px solid var(--amber); outline-offset:2px}
+button{font:inherit; color:inherit; background:none; border:none; cursor:pointer}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ===== 走査線（デフォルトOFF） ===== */
+.scan{position:fixed;inset:0;pointer-events:none;z-index:50;display:none}
+:root.scan-on .scan{display:block;
+  background:repeating-linear-gradient(to bottom,rgba(0,0,0,.16) 0 1px,transparent 1px 3px)}
+
+/* ===== 上部バー ===== */
+.bar{height:36px;background:var(--panel);border-bottom:1px solid var(--line);
+     display:flex;align-items:center;gap:var(--s3);padding:0 var(--s5);
+     position:sticky;top:0;z-index:40}
+.bar .logo{font-family:var(--dot);font-size:15px;color:var(--amber);letter-spacing:.04em}
+.bar .hours{font-size:11px;color:var(--muted)}
+.bar .nav{display:flex;gap:var(--s4);margin-left:var(--s5);font-size:12px}
+.bar .nav a{color:var(--fg)}
+.bar .nav a:hover,.bar .nav a[aria-current]{color:var(--amber)}
+.bar .right{margin-left:auto;display:flex;align-items:center;gap:var(--s4)}
+.bar .right button,.bar .right a{font-size:12px;color:var(--fg);display:flex;align-items:center;gap:6px;padding:4px 6px}
+.bar .right button:hover,.bar .right a:hover{color:var(--amber)}
+.bar .right svg{width:14px;height:14px;fill:currentColor}
+
+/* ===== レイアウト ===== */
+.wrap{max-width:960px;margin:0 auto;padding:var(--s5) var(--s6) 64px}
+.top{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:var(--s5)}
+.pane{border:1px solid var(--line);padding:var(--s5)}
+
+/* ===== 見出し共通 ===== */
+.sec-h{display:flex;align-items:baseline;gap:8px;margin:0 0 2px}
+.sec-h h2{font-family:var(--dot);font-size:16px;color:var(--amber);margin:0;font-weight:400}
+.sec-h .en{font-size:11px;color:var(--muted)}
+.sec-sub{font-size:11px;color:var(--muted);margin:0 0 var(--s3)}
+.rule{border:0;border-top:1px solid var(--line);margin:var(--s4) 0}
+.prompt{font-size:12px;color:var(--term);margin:0 0 var(--s3);display:flex;align-items:center;gap:8px}
+.prompt i{width:8px;height:14px;background:var(--term);display:inline-block}
+
+/* ===== トップ：名前ブロック ===== */
+.name{font-family:var(--dot);font-size:34px;line-height:1.25;color:var(--amber);margin:0}
+.romaji{font-family:var(--mono);font-size:14px;color:var(--amber);margin:2px 0 var(--s3);letter-spacing:.08em}
+.role{font-size:13px;color:var(--fg);margin:0}
+.school{font-size:12px;color:var(--muted);margin:2px 0 0}
+.tagline{font-family:var(--jp);font-size:14px;color:var(--fg);margin:0;
+         padding-left:var(--s3);border-left:2px solid var(--amber);line-height:1.8}
+.brown-say{font-size:12.5px;color:var(--term);margin:var(--s5) 0 0;line-height:1.9}
+.brown-say span{display:block}
+.hero{display:flex;gap:var(--s5);align-items:flex-start}
+.hero .txt{flex:1;min-width:0}
+.hero .fig{width:150px;flex:0 0 150px}
+.hero .fig svg{width:100%;height:auto;display:block}
+
+/* ===== トップ：6ボタン ===== */
+.menu{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:var(--s5)}
+.menu a{background:var(--panel);border:1px solid var(--line);
+        padding:var(--s4) 10px;text-align:center;color:var(--fg);
+        display:flex;flex-direction:column;align-items:center;gap:6px;
+        transition:border-color 80ms linear,color 80ms linear}
+.menu a:hover,.menu a:focus-visible{border-color:var(--amber);color:var(--amber)}
+.menu a svg{width:28px;height:28px;fill:var(--amber)}
+.menu .t{font-family:var(--jp);font-size:14px;line-height:1.4}
+.menu .d{font-family:var(--jp);font-size:11px;color:var(--muted);line-height:1.4}
+.menu a:hover .d,.menu a:focus-visible .d{color:var(--amber)}
+
+/* ===== 書類棚 ===== */
+.side{display:flex;flex-direction:column;gap:var(--s5)}
+.files{list-style:none;margin:0;padding:0}
+.files li{border-bottom:1px solid var(--line-2)}
+.files a{display:flex;align-items:center;gap:8px;padding:7px 0;font-size:11px;color:var(--fg);line-height:1.5}
+.files a:hover{color:var(--amber)}
+.files a[aria-current]{color:var(--amber)}
+.files svg{width:13px;height:13px;fill:var(--muted);flex:0 0 13px}
+.files a:hover svg,.files a[aria-current] svg{fill:var(--amber)}
+.files .fn{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.files .dt{color:var(--muted);font-size:10px;flex:0 0 auto}
+.openall{display:block;margin-top:var(--s4);border:1px solid var(--amber);color:var(--amber);
+         text-align:center;padding:9px 0;font-size:12px;transition:background 80ms linear}
+.openall:hover{background:var(--panel)}
+
+/* ===== 時計 ===== */
+.clock{display:flex;align-items:center;gap:var(--s4)}
+.clock svg{width:34px;height:34px;stroke:var(--fg);fill:none;stroke-width:1.5}
+.clock .hm{font-size:26px;line-height:1.1}
+.clock .ymd{font-size:11px;color:var(--muted)}
+
+/* ===== 最近の更新 ===== */
+.updated{margin-top:var(--s5);border:1px solid var(--line);padding:var(--s5)}
+.updated .head{display:flex;align-items:baseline;margin-bottom:var(--s4)}
+.updated .head a{margin-left:auto;font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s4)}
+.card{border:1px solid var(--line-2);padding:var(--s4)}
+.card .thumb{border:1px solid var(--line-2);background:var(--panel-2);height:92px;
+             display:flex;align-items:center;justify-content:center;margin-bottom:var(--s3)}
+.card .thumb svg{width:70%;height:auto;stroke:var(--muted);fill:none;stroke-width:1}
+.card h3{font-family:var(--jp);font-size:14px;color:var(--amber);margin:0;font-weight:400}
+.card .dt{font-size:11px;color:var(--muted);margin:2px 0 6px}
+.card p{font-family:var(--jp);font-size:12px;margin:0 0 var(--s3);line-height:1.7}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tags span{border:1px solid var(--line);font-size:10px;color:var(--muted);padding:2px 8px}
+
+/* ===========================================================
+   文書ページ（企画書・分析・ボツ企画で共用）
+   =========================================================== */
+
+.crumb{font-size:11px;color:var(--muted);margin:0 0 var(--s4)}
+.crumb a{color:var(--muted)}
+.crumb a:hover{color:var(--amber)}
+.crumb b{color:var(--amber);font-weight:400}
+
+.doc{max-width:680px}
+.doc-title{font-family:var(--dot);font-size:24px;line-height:1.35;color:var(--amber);margin:0 0 var(--s2);font-weight:400}
+.doc-lead{font-family:var(--jp);font-size:14px;color:var(--fg);margin:0 0 var(--s5);line-height:1.8}
+
+.spec{width:100%;border-collapse:collapse;font-size:13px;margin:0 0 var(--s5)}
+.spec th,.spec td{border-bottom:1px solid var(--line-2);padding:7px 0;text-align:left;font-weight:400;vertical-align:top}
+.spec th{color:var(--muted);width:132px;white-space:nowrap}
+
+.figure{border:1px solid var(--line);background:var(--panel);padding:var(--s5) var(--s4);margin:0 0 var(--s5)}
+.figure svg{width:100%;height:auto;display:block}
+.figure img{width:100%;height:auto;display:block}
+.figure figcaption{font-size:11px;color:var(--muted);text-align:center;margin-top:var(--s3);line-height:1.6}
+
+.doc h2{font-family:var(--mono);font-size:16px;color:var(--fg);margin:var(--s5) 0 var(--s3);font-weight:500;
+        padding-left:10px;border-left:2px solid var(--amber)}
+.doc p{font-family:var(--jp);font-size:16px;line-height:1.9;margin:0 0 var(--s4)}
+.doc .num{color:var(--amber)}
+
+.brown-note{font-size:12.5px;color:var(--term);line-height:1.9;margin:0 0 var(--s5)}
+.brown-note span{display:block}
+
+.actions{display:flex;flex-wrap:wrap;gap:var(--s3);margin:var(--s6) 0 0}
+.cta{display:inline-block;border:1px solid var(--amber);color:var(--amber);
+     padding:9px 16px;font-size:13px;transition:background 80ms linear}
+.cta:hover{background:var(--panel)}
+.cta.sub{border-color:var(--line);color:var(--muted)}
+.cta.sub:hover{color:var(--fg)}
+
+.related{margin-top:var(--s6);border-top:1px solid var(--line);padding-top:var(--s4)}
+.related p{font-size:12px;color:var(--muted);margin:0 0 6px;font-family:var(--jp)}
+.related a{font-size:13px}
+
+/* ===== 設定パネル ===== */
+.cfg{display:none;border:1px solid var(--amber);background:var(--panel);
+     padding:var(--s5);margin:var(--s5) auto 0;max-width:960px}
+.cfg.open{display:block}
+.cfg h2{font-family:var(--dot);font-size:16px;color:var(--amber);margin:0 0 var(--s3);font-weight:400}
+.cfg label{display:flex;align-items:center;gap:10px;font-size:13px;padding:6px 0;cursor:pointer}
+.cfg input{width:16px;height:16px;accent-color:#E3A44A}
+.cfg .note{font-size:11px;color:var(--muted);margin:var(--s3) 0 0}
+.tw{visibility:hidden}
+.tw.done{visibility:visible}
+
+/* ===== フッター ===== */
+footer{border-top:1px solid var(--line);margin-top:var(--s6);padding:var(--s4) var(--s6);
+       display:flex;align-items:center;gap:var(--s5);font-size:11px;color:var(--muted);flex-wrap:wrap}
+footer .mid{display:flex;gap:var(--s5)}
+footer .tail{margin-left:auto;color:var(--term)}
+
+/* ===== モバイル ===== */
+@media (max-width:767px){
+  .wrap{padding:var(--s4) 20px 48px}
+  .top{grid-template-columns:1fr;gap:var(--s4)}
+  .hero{gap:var(--s4)}
+  .hero .fig{width:96px;flex:0 0 96px}
+  .name{font-size:26px}
+  .menu{grid-template-columns:1fr;gap:var(--s2)}
+  .menu a{flex-direction:row;justify-content:flex-start;gap:var(--s3);
+          min-height:48px;text-align:left;padding:10px var(--s4)}
+  .menu a svg{width:22px;height:22px;flex:0 0 22px}
+  .cards{grid-template-columns:1fr}
+  .bar{padding:0 20px;height:44px}
+  .bar .nav{display:none}
+  footer{padding:var(--s4) 20px}
+  footer .tail{margin-left:0;width:100%}
+  .doc-title{font-size:20px}
+  .spec th{width:104px}
+  .cta{min-height:48px;display:flex;align-items:center}
+  :root.scan-on .scan{display:none}
+}
+@media (min-width:768px) and (max-width:1023px){
+  .top{grid-template-columns:minmax(0,1fr) 240px}
+  .wrap{padding:var(--s5) var(--s5) 48px}
+}
+@media (prefers-reduced-motion: reduce){
+  *{transition:none !important;animation:none !important}
+}
+
+/* ===========================================================
+   ボツ企画：書庫表現
+   =========================================================== */
+.cabinet{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s4);margin:var(--s5) 0 0}
+.drawer{border:1px solid var(--line);background:var(--panel);padding:0;
+        display:flex;flex-direction:column;color:var(--fg);
+        transition:border-color 80ms linear}
+.drawer:hover,.drawer:focus-visible{border-color:var(--amber)}
+.drawer .handle{border-bottom:1px solid var(--line);background:var(--panel-2);
+                padding:var(--s3) var(--s4);display:flex;align-items:center;gap:10px}
+.drawer .handle i{width:26px;height:5px;background:var(--line);display:block;flex:0 0 26px}
+.drawer .handle .no{font-size:11px;color:var(--muted)}
+.drawer:hover .handle .no,.drawer:focus-visible .handle .no{color:var(--amber)}
+.drawer .in{padding:var(--s4)}
+.drawer h3{font-family:var(--jp);font-size:15px;color:var(--amber);margin:0 0 6px;font-weight:400}
+.drawer .fn{font-size:10px;color:var(--muted);margin:0 0 var(--s3);
+            overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.drawer p{font-family:var(--jp);font-size:12px;line-height:1.75;margin:0}
+.drawer .kind{border:1px solid var(--line);font-size:10px;color:var(--muted);
+              padding:2px 8px;margin-top:var(--s3);display:inline-block}
+
+/* ===== 作ったゲーム ===== */
+.works{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s4);margin-top:var(--s5)}
+.work{border:1px solid var(--line);padding:var(--s4)}
+.work h3{font-family:var(--jp);font-size:16px;color:var(--amber);margin:0 0 2px;font-weight:400}
+.work .meta{font-size:11px;color:var(--muted);margin:0 0 var(--s3)}
+.work p{font-family:var(--jp);font-size:13px;line-height:1.8;margin:0 0 var(--s4)}
+
+/* ===== プロフィール（端末緑を使わない唯一のページ） ===== */
+.pf{display:flex;gap:var(--s5);align-items:flex-start;margin-bottom:var(--s5)}
+.pf .photo{width:132px;flex:0 0 132px;border:1px solid var(--line);background:var(--panel);
+           aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;
+           font-size:11px;color:var(--muted);text-align:center;line-height:1.6;padding:var(--s3)}
+.pf .who{flex:1;min-width:0}
+.skills{width:100%;border-collapse:collapse;font-size:13px;margin:0 0 var(--s5)}
+.skills th,.skills td{border-bottom:1px solid var(--line-2);padding:8px 0;text-align:left;font-weight:400;vertical-align:top}
+.skills thead th{color:var(--muted);font-size:11px}
+.skills .lv{width:96px;color:var(--amber)}
+.skills .lv.sub{color:var(--muted)}
+.skills .ex{font-family:var(--jp);font-size:12px;color:var(--muted)}
+.hobby{list-style:none;margin:0 0 var(--s5);padding:0;font-family:var(--jp);font-size:13px}
+.hobby li{border-bottom:1px solid var(--line-2);padding:7px 0;display:flex;gap:var(--s4)}
+.hobby b{font-weight:400;color:var(--amber);flex:0 0 132px}
+.contact{border:1px solid var(--amber);padding:var(--s4) var(--s5);margin-top:var(--s5)}
+.contact h2{border:0;padding:0;margin:0 0 var(--s3)}
+.contact dl{margin:0;font-size:13px}
+.contact dt{color:var(--muted);font-size:11px;margin-top:var(--s3)}
+.contact dd{margin:2px 0 0}
+
+/* ===== FAQ（選択式） ===== */
+.faq{margin-top:var(--s5)}
+.faq details{border:1px solid var(--line);margin-bottom:10px;background:var(--panel)}
+.faq summary{padding:var(--s3) var(--s4);cursor:pointer;font-family:var(--jp);font-size:14px;
+             list-style:none;display:flex;gap:10px;align-items:baseline}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::before{content:"?";color:var(--amber);font-family:var(--mono);font-size:13px;flex:0 0 auto}
+.faq summary:hover{color:var(--amber)}
+.faq details[open] summary{border-bottom:1px solid var(--line);color:var(--amber)}
+.faq .a{padding:var(--s4);font-family:var(--jp);font-size:13.5px;line-height:1.9;margin:0}
+
+/* ===== ライセンス ===== */
+.lic{width:100%;border-collapse:collapse;font-size:13px;margin:0 0 var(--s5)}
+.lic th,.lic td{border-bottom:1px solid var(--line-2);padding:8px var(--s4) 8px 0;text-align:left;font-weight:400;vertical-align:top}
+.lic thead th{color:var(--muted);font-size:11px}
+.lic .nm{font-family:var(--mono);color:var(--fg)}
+
+@media (max-width:767px){
+  .cabinet{grid-template-columns:1fr}
+  .works{grid-template-columns:1fr}
+  .pf{gap:var(--s4)}
+  .pf .photo{width:100px;flex:0 0 100px}
+  .hobby li{flex-direction:column;gap:0}
+  .hobby b{flex:none}
+  .faq summary{min-height:48px;align-items:center}
+}

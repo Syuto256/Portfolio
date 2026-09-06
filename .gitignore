@@ -1,0 +1,6 @@
+# 編集ツールの自動バックアップ(ローカルの安全装置なので共有・追跡しない)
+_edit-tool/backups/
+
+# OS が作る不要ファイル
+Thumbs.db
+.DS_Store

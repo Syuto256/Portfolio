@@ -1,0 +1,39 @@
+{
+  "fonts": [
+    {
+      "name": "JetBrains Mono",
+      "license": "SIL Open Font License 1.1",
+      "use": "英数・UI・数値"
+    },
+    {
+      "name": "BIZ UDPGothic",
+      "license": "SIL Open Font License 1.1",
+      "use": "日本語本文"
+    },
+    {
+      "name": "DotGothic16",
+      "license": "SIL Open Font License 1.1",
+      "use": "見出し・ロゴ"
+    }
+  ],
+  "assets": [
+    {
+      "name": "ブラウン（案内役）",
+      "method": "画像生成AIを使用して制作し、配色とサイズを本人が調整",
+      "status": "暫定版。デザイナーへの依頼を予定",
+      "protected": true
+    },
+    {
+      "name": "メニューアイコン6点",
+      "method": "画像生成AIを使用して制作",
+      "status": "暫定版。デザイナーへの依頼を予定",
+      "protected": true
+    },
+    {
+      "name": "図版（コアループ図ほか）",
+      "method": "本人が作図",
+      "status": "―",
+      "protected": true
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>プロフィール ／ 深夜遊戯</title>
+<meta name="description" content="ゲームプランナー志望。経歴・スキル・連絡先。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=JetBrains+Mono:wght@400;500&family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="scan" aria-hidden="true"></div>
+
+<header class="bar">
+  <a class="logo" href="index.html">深夜遊戯</a>
+  <span class="hours">23:00 - LATE</span>
+  <nav class="nav" aria-label="サイト内ナビゲーション">
+    <a href="proposal-001.html">企画書</a>
+    <a href="analysis-001.html">分析</a>
+    <a href="works.html">作ったゲーム</a>
+    <a href="recovered.html">ボツ企画・失敗談</a>
+    <a href="profile.html" aria-current="page">プロフィール</a>
+    <a href="faq.html">FAQ</a>
+  </nav>
+  <div class="right">
+    <button id="cfgBtn" aria-expanded="false" aria-controls="cfg">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7 1h2v2H7zM7 13h2v2H7zM1 7h2v2H1zM13 7h2v2h-2zM3 3h2v2H3zM11 3h2v2h-2zM3 11h2v2H3zM11 11h2v2h-2zM6 6h4v4H6z"/></svg>設定</button>
+    <a href="#contact">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1 3h14v10H1zM2 4v1h12V4zM3 6l5 4 5-4v1l-5 4-5-4z"/></svg>連絡先</a>
+  </div>
+</header>
+
+<section class="cfg" id="cfg" hidden>
+  <h2>設定</h2>
+  <label><input type="checkbox" id="optScan">走査線を表示する</label>
+  <label><input type="checkbox" id="optTw">文字を1文字ずつ表示する</label>
+  <label><input type="checkbox" id="optHc">高コントラスト表示にする</label>
+  <p class="note">設定は保存されません。このページを離れると初期状態に戻ります。</p>
+</section>
+
+<main class="wrap">
+  <div class="pane">
+      <p class="crumb"><a href="index.html">C:\&gt;</a> <b>profile</b></p>
+
+    <div class="doc">
+      <div class="pf">
+        <div class="photo">顔写真<br>（差し替え予定）</div>
+        <div class="who">
+          <h1 class="name" style="font-size:28px">山田 太郎</h1>
+          <p class="romaji">Yamada Taro</p>
+          <p class="role">ゲームプランナー志望</p>
+          <p class="school">◯◯専門学校 ゲーム制作科 3年 ／ 2028年3月卒業見込 ／ 東京都</p>
+          <hr class="rule">
+          <p class="tagline">不完全な情報の中で選択させる、判断の設計をしています。</p>
+        </div>
+      </div>
+
+        <h2>これまで／これから</h2>
+        <p>麻雀、競馬、ダーツ、対戦ゲーム。自分が長く続けてきたものを並べたとき、共通していたのは「情報が足りない状態で判断すること」でした。勝ち負けそのものより、判断の根拠を後から検討する時間のほうが面白いと気づいてから、ゲームを遊ぶときも同じ見方をするようになりました。今はその視点で、他人の作品を分析し、自分の企画を設計しています。入社後は、プレイヤーが何を選ばされているかを説明できる企画を作れるようになりたいと考えています。</p>
+
+        <h2>自己PR</h2>
+        <p>専門学校のチーム制作で、6人の進行管理を引き受けました。週2回の全体確認では議題が溜まりすぎて結論が出なかったため、確認を週1回に減らし、代わりに毎朝5分の進捗共有を始めました。結果、締切前に作業が集中する期間が3日から1日に縮まりました。決めたのは会議を増やすことではなく、判断の回数を細かく分けることでした。</p>
+
+      <h2>スキル</h2>
+      <table class="skills">
+        <thead><tr><th>ツール</th><th>レベル</th><th>具体例</th></tr></thead>
+        <tbody>
+          <tr><td class="nm">PowerPoint</td><td class="lv">実務レベル</td><td class="ex">企画書◯本。社外向け提案の経験あり</td></tr>
+          <tr><td class="nm">Excel</td><td class="lv">実務レベル</td><td class="ex">パラメータ表と成長曲線の設計</td></tr>
+          <tr><td class="nm">Unity</td><td class="lv">触れる</td><td class="ex">個人でWebGLゲームを1本完成させた</td></tr>
+          <tr><td class="nm">Photoshop</td><td class="lv sub">基礎のみ</td><td class="ex">ラフの清書程度</td></tr>
+        </tbody>
+      </table>
+
+      <h2>趣味</h2>
+      <ul class="hobby">
+        <li><b>麻雀</b><span>不完全情報下での意思決定の訓練</span></li>
+        <li><b>競馬</b><span>オッズという集団の予測を読む練習</span></li>
+        <li><b>ダーツ</b><span>実行精度と狙いの折り合いのつけ方</span></li>
+        <li><b>ゲームセンター</b><span>短時間で成立する体験の観察</span></li>
+      </ul>
+
+      <div class="contact" id="contact">
+        <h2>連絡先</h2>
+        <dl>
+          <dt>メール</dt><dd><a href="mailto:example@example.com">example@example.com</a></dd>
+          <dt>ポートフォリオ</dt><dd>このサイト</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <span>&copy; 2026 山田 太郎 ／ 深夜遊戯</span>
+  <span class="mid"><a href="license.html">ライセンス</a><a href="#">更新履歴</a></span>
+  <span class="tail">C:\&gt; 深夜遊戯 / profile</span>
+</footer>
+
+<script src="app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "work-1",
+    "protected": true,
+    "title": "SLOT DUCK RACE",
+    "meta": "Unity / WebGL ／ 1プレイ 3分 ／ 個人 ／ 2026-08",
+    "body": "ワンボタンの3Dアイソメトリックゲーム。止めるタイミングだけで加速量が決まるため、盤面を見ながら「今か、もう1周待つか」を選び続ける構造になっています。",
+    "playUrl": "#",
+    "playLabel": "今すぐ遊ぶ",
+    "noteUrl": "#",
+    "noteLabel": "制作メモ",
+    "thumb": null
+  },
+  {
+    "id": "work-2",
+    "protected": true,
+    "title": "（記入予定）",
+    "meta": "――",
+    "body": "2本目の枠。小さくてもブラウザで即動くものを置きます。",
+    "playUrl": null,
+    "playLabel": "準備中",
+    "noteUrl": null,
+    "noteLabel": null,
+    "thumb": null
+  }
+]

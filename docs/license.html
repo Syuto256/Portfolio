@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ライセンス ／ 深夜遊戯</title>
+<meta name="description" content="使用しているフォント・素材と、その出所の表記。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=JetBrains+Mono:wght@400;500&family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="scan" aria-hidden="true"></div>
+
+<header class="bar">
+  <a class="logo" href="index.html">深夜遊戯</a>
+  <span class="hours">23:00 - LATE</span>
+  <nav class="nav" aria-label="サイト内ナビゲーション">
+    <a href="proposal-001.html">企画書</a>
+    <a href="analysis-001.html">分析</a>
+    <a href="works.html">作ったゲーム</a>
+    <a href="recovered.html">ボツ企画・失敗談</a>
+    <a href="profile.html">プロフィール</a>
+    <a href="faq.html">FAQ</a>
+  </nav>
+  <div class="right">
+    <button id="cfgBtn" aria-expanded="false" aria-controls="cfg">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7 1h2v2H7zM7 13h2v2H7zM1 7h2v2H1zM13 7h2v2h-2zM3 3h2v2H3zM11 3h2v2h-2zM3 11h2v2H3zM11 11h2v2h-2zM6 6h4v4H6z"/></svg>設定</button>
+    <a href="profile.html#contact">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1 3h14v10H1zM2 4v1h12V4zM3 6l5 4 5-4v1l-5 4-5-4z"/></svg>連絡先</a>
+  </div>
+</header>
+
+<section class="cfg" id="cfg" hidden>
+  <h2>設定</h2>
+  <label><input type="checkbox" id="optScan">走査線を表示する</label>
+  <label><input type="checkbox" id="optTw">文字を1文字ずつ表示する</label>
+  <label><input type="checkbox" id="optHc">高コントラスト表示にする</label>
+  <p class="note">設定は保存されません。このページを離れると初期状態に戻ります。</p>
+</section>
+
+<main class="wrap">
+  <div class="pane">
+      <p class="crumb"><a href="index.html">C:\&gt;</a> <b>license</b></p>
+
+    <div class="doc">
+      <h1 class="doc-title">ライセンス</h1>
+      <p class="doc-lead">このサイトで使用している素材と、その出所です。</p>
+
+      <h2>フォント</h2>
+      <table class="lic">
+        <thead><tr><th>名称</th><th>ライセンス</th><th>用途</th></tr></thead>
+        <tbody>
+          <tr><td class="nm">JetBrains Mono</td><td>SIL Open Font License 1.1</td><td>英数・UI・数値</td></tr>
+          <tr><td class="nm">BIZ UDPGothic</td><td>SIL Open Font License 1.1</td><td>日本語本文</td></tr>
+          <tr><td class="nm">DotGothic16</td><td>SIL Open Font License 1.1</td><td>見出し・ロゴ</td></tr>
+        </tbody>
+      </table>
+
+      <h2>イラスト・アイコン・画像</h2>
+      <table class="lic">
+        <thead><tr><th>対象</th><th>制作方法</th><th>状態</th></tr></thead>
+        <tbody>
+          <tr><td class="nm">ブラウン（案内役）</td><td>画像生成AIを使用して制作し、配色とサイズを本人が調整</td><td>暫定版。デザイナーへの依頼を予定</td></tr>
+          <tr><td class="nm">メニューアイコン6点</td><td>画像生成AIを使用して制作</td><td>暫定版。デザイナーへの依頼を予定</td></tr>
+          <tr><td class="nm">図版（コアループ図ほか）</td><td>本人が作図</td><td>―</td></tr>
+        </tbody>
+      </table>
+
+      <h2>このサイトについて</h2>
+      <p>訪問者の情報を取得する仕組み（アクセス解析、Cookie、フォーム送信）は使用していません。設定パネルで変更した表示設定も保存されず、ページを離れると初期状態に戻ります。</p>
+      <p>掲載している企画書・分析・図版はすべて本人が作成したものです。既存タイトルのスクリーンショットや、第三者の権利物は使用していません。</p>
+
+      <div class="actions">
+        <a class="cta sub" href="index.html">トップに戻る</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <span>&copy; 2026 山田 太郎 ／ 深夜遊戯</span>
+  <span class="mid"><a href="license.html">ライセンス</a><a href="#">更新履歴</a></span>
+  <span class="tail">C:\&gt; 深夜遊戯 / license</span>
+</footer>
+
+<script src="app.js" defer></script>
+</body>
+</html>

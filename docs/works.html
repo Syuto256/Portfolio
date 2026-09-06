@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作ったゲーム ／ 深夜遊戯</title>
+<meta name="description" content="公開済みのゲームと実験的な作品。ブラウザで遊べます。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=JetBrains+Mono:wght@400;500&family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="scan" aria-hidden="true"></div>
+
+<header class="bar">
+  <a class="logo" href="index.html">深夜遊戯</a>
+  <span class="hours">23:00 - LATE</span>
+  <nav class="nav" aria-label="サイト内ナビゲーション">
+    <a href="proposal-001.html">企画書</a>
+    <a href="analysis-001.html">分析</a>
+    <a href="works.html" aria-current="page">作ったゲーム</a>
+    <a href="recovered.html">ボツ企画・失敗談</a>
+    <a href="profile.html">プロフィール</a>
+    <a href="faq.html">FAQ</a>
+  </nav>
+  <div class="right">
+    <button id="cfgBtn" aria-expanded="false" aria-controls="cfg">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7 1h2v2H7zM7 13h2v2H7zM1 7h2v2H1zM13 7h2v2h-2zM3 3h2v2H3zM11 3h2v2h-2zM3 11h2v2H3zM11 11h2v2h-2zM6 6h4v4H6z"/></svg>設定</button>
+    <a href="profile.html#contact">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1 3h14v10H1zM2 4v1h12V4zM3 6l5 4 5-4v1l-5 4-5-4z"/></svg>連絡先</a>
+  </div>
+</header>
+
+<section class="cfg" id="cfg" hidden>
+  <h2>設定</h2>
+  <label><input type="checkbox" id="optScan">走査線を表示する</label>
+  <label><input type="checkbox" id="optTw">文字を1文字ずつ表示する</label>
+  <label><input type="checkbox" id="optHc">高コントラスト表示にする</label>
+  <p class="note">設定は保存されません。このページを離れると初期状態に戻ります。</p>
+</section>
+
+<main class="wrap">
+  <div class="pane">
+      <p class="crumb"><a href="index.html">C:\&gt;</a> <b>works</b></p>
+
+    <h1 class="doc-title">作ったゲーム</h1>
+    <p class="doc-lead">ダウンロード不要。リンクを開けばその場で遊べます。</p>
+    <p class="brown-note" data-typewriter>
+      <span>&gt; 実行可能なファイルが2件あります。</span>
+    </p>
+
+    <div class="works">
+      <div class="work">
+        <h3>SLOT DUCK RACE</h3>
+        <p class="meta">Unity / WebGL ／ 1プレイ 3分 ／ 個人 ／ 2026-08</p>
+        <p>ワンボタンの3Dアイソメトリックゲーム。止めるタイミングだけで加速量が決まるため、盤面を見ながら「今か、もう1周待つか」を選び続ける構造になっています。</p>
+        <div class="actions">
+          <a class="cta" href="#" target="_blank" rel="noopener">今すぐ遊ぶ</a>
+          <a class="cta sub" href="#">制作メモ</a>
+        </div>
+      </div>
+
+      <div class="work">
+        <h3>（記入予定）</h3>
+        <p class="meta">――</p>
+        <p>2本目の枠。小さくてもブラウザで即動くものを置きます。</p>
+        <div class="actions">
+          <a class="cta sub" href="#">準備中</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <span>&copy; 2026 山田 太郎 ／ 深夜遊戯</span>
+  <span class="mid"><a href="license.html">ライセンス</a><a href="#">更新履歴</a></span>
+  <span class="tail">C:\&gt; 深夜遊戯 / works</span>
+</footer>
+
+<script src="app.js" defer></script>
+</body>
+</html>
