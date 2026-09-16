@@ -1,26 +1,67 @@
 [
   {
-    "id": "work-1",
-    "protected": true,
-    "title": "SLOT DUCK RACE",
-    "meta": "Unity / WebGL ／ 1プレイ 3分 ／ 個人 ／ 2026-08",
-    "body": "ワンボタンの3Dアイソメトリックゲーム。止めるタイミングだけで加速量が決まるため、盤面を見ながら「今か、もう1周待つか」を選び続ける構造になっています。",
-    "playUrl": "#",
-    "playLabel": "今すぐ遊ぶ",
-    "noteUrl": "#",
-    "noteLabel": "制作メモ",
-    "thumb": null
+    "id": "work-digital-helper",
+    "protected": false,
+    "title": ":Digital Helper",
+    "meta": "Unity/チーム制作/2026-08/企画・プログラムなどを担当",
+    "body": "次々に届く創作タスクを、自分で片づけるか、AIに任せるか。深夜の自室で忙しく立ち回るタスク管理ミニゲームです。",
+    "playUrl": "https://unityroom.com/games/digital_helper",
+    "playLabel": "ブラウザで遊ぶ",
+    "noteUrl": null,
+    "noteLabel": null,
+    "thumb": "assets/img/digital-helper-action.png",
+    "thumbSource": "self"
   },
   {
     "id": "work-2",
     "protected": true,
-    "title": "（記入予定）",
-    "meta": "――",
-    "body": "2本目の枠。小さくてもブラウザで即動くものを置きます。",
-    "playUrl": null,
-    "playLabel": "準備中",
+    "title": "双子",
+    "meta": "Unity/1プレイ3分/チーム制作/2026-06",
+    "body": "このゲームは、「リンク」を使い、バフや攻撃をリンクさせることで相手を倒していくというのがゲームのコアです。\n敵と敵同士をつなげて1ターンで攻撃を二回分当てたり、味方同士でバフリンクをつなげて、二人ともバフを上げたりができます。\nリンクを使う戦略性が楽しいゲームになっています",
+    "playUrl": "https://unityroom.com/games/futago",
+    "playLabel": "ブラウザで遊ぶ",
     "noteUrl": null,
     "noteLabel": null,
-    "thumb": null
+    "thumb": "assets/img/1789529221134_スクリ_ンショット_2026-09-16_120739.png",
+    "thumbSource": "self"
+  },
+  {
+    "title": "Morehit2",
+    "meta": "Unity/1プレイ3分/チーム制作/2025-12",
+    "body": "ダメージを蓄積して溜め攻撃で吹っ飛ばして、さらに敵に当てろ！\nMoreHitを狙え！",
+    "playUrl": "https://unityroom.com/games/morehit2",
+    "playLabel": "ブラウザで遊ぶ",
+    "noteUrl": null,
+    "noteLabel": null,
+    "thumbSource": "self",
+    "thumb": "assets/img/1789529068584_スクリ_ンショット_2026-09-16_122317.png",
+    "id": "work-3",
+    "protected": false
+  },
+  {
+    "title": "たかし、人生ベット中",
+    "meta": "Unity/1プレイ3分/チーム制作/2025-08",
+    "body": "ギャンブル中毒者「たかし」にギャンブルではなく、娯楽を撃って娯楽にお金を使わせるシューティングゲームです。",
+    "playUrl": "https://unityroom.com/games/i-want-hosurus",
+    "playLabel": "ブラウザで遊ぶ",
+    "noteUrl": null,
+    "noteLabel": null,
+    "thumbSource": "self",
+    "thumb": "assets/img/1789529910164_スクリ_ンショット_2026-09-16_123805.png",
+    "id": "work-4",
+    "protected": false
+  },
+  {
+    "title": "零・回避",
+    "meta": "DxLib/1プレイ３分/個人/2025-12",
+    "body": "初めてC++で作った2DSTGです。\n通常の2DSTGに加えて、当たる瞬間に必殺技を出すと即時発射とスコア増加というリスクとリターンを考えた。\n遊びを入れています。\n配布は行っていません。",
+    "playUrl": "配布していません",
+    "playLabel": "プレイできません",
+    "noteUrl": null,
+    "noteLabel": null,
+    "thumbSource": "self",
+    "thumb": "assets/img/1789531229308_スクリ_ンショット_2026-09-16_125406.png",
+    "id": "work-5",
+    "protected": false
   }
 ]

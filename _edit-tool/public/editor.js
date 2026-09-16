@@ -146,7 +146,16 @@
       '<h2>' + (id ? '企画書を編集' : '企画書を新規追加') + (entry.protected ? '<span class="tag">既存ページ</span>' : '') + '</h2>' +
       (entry.protected ? '<p class="protected-note">この企画書は最初から入っていたサンプルです。編集して保存すると、図版の色付き強調などの一部装飾は失われます(数値・文章はそのまま残ります)。</p>' : '') +
       '<div class="field"><label>タイトル</label><input type="text" id="f-title" value="' + escAttr(entry.title) + '"></div>' +
-      '<div class="field"><label>リード文(1〜2行の要約)</label><textarea id="f-lead">' + esc(entry.lead) + '</textarea></div>' +
+      '<div class="field"><label>企画書PDF</label>' +
+      (entry.pdf ? '<p class="protected-note">現在のPDF: ' + esc(entry.pdf) + '</p>' : '<p class="protected-note">PDFはまだ登録されていません。</p>') +
+      '<input type="file" id="f-pdf" accept="application/pdf">' +
+      '<p class="hint">PDFは5MBまで。PowerPointの場合は先に「エクスポート → PDF/XPSドキュメントの作成」でPDF化してください。</p>' +
+      '<input type="text" id="f-pdflabel" style="margin-top:8px" placeholder="公開ページに表示する文言" value="' + escAttr(entry.pdfLabel || '企画書を開く（PDF）') + '"></div>' +
+      '<div class="field"><label>一言解説</label><textarea id="f-lead">' + esc(entry.lead) + '</textarea></div>' +
+      '<div class="field"><label>PDFのスクリーンショット(1枚)</label>' +
+      (entry.pdfPreview ? '<p class="protected-note">現在の画像: ' + esc(entry.pdfPreview) + '</p>' : '<p class="protected-note">公開ページのPDFボタン上に表示する画像です。</p>') +
+      '<input type="file" id="f-pdfpreview" accept="image/png,image/jpeg,image/webp">' +
+      '<p class="hint">PNG・JPEG・WebP、3MBまで。PDFの表紙や内容が伝わる1ページを選んでください。</p></div>' +
       '<div class="field"><label>基本情報</label><div id="f-spec"></div></div>' +
       '<div class="field"><label>本文(見出し＋文章を追加できます)</label><div id="f-sections"></div></div>' +
       '<div class="field"><label>図版画像(任意・省略可)</label>' +
@@ -154,11 +163,6 @@
       '<input type="file" id="f-figure" accept="image/png,image/jpeg,image/webp">' +
       '<div class="row2" style="margin-top:8px"><input type="text" id="f-figcaption" placeholder="図のキャプション" value="' + escAttr(entry.figure ? entry.figure.caption : '') + '">' +
       '<select id="f-figsource"><option value="self">本人が作成</option><option value="ai">生成AIで制作</option></select></div></div>' +
-      '<div class="field"><label>PDFアップロード(任意)</label>' +
-      (entry.pdf ? '<p class="protected-note">現在のPDF: ' + esc(entry.pdf) + '</p>' : '') +
-      '<input type="file" id="f-pdf" accept="application/pdf">' +
-      '<p class="hint">PowerPointの場合は先に「エクスポート → PDF/XPSドキュメントの作成」でPDF化してからアップロードしてください。</p>' +
-      '<input type="text" id="f-pdflabel" style="margin-top:8px" placeholder="ボタンの文言" value="' + escAttr(entry.pdfLabel || '企画書を読む(PDF)') + '"></div>' +
       '<div class="field"><label>関連するボツ企画(任意)</label><select id="f-related">' +
       '<option value="">関連なし</option>' +
       recoveredOptions.map(function (r) { return '<option value="' + r.id + '.html" ' + (entry.related && entry.related.href === r.id + '.html' ? 'selected' : '') + '>' + esc(r.title) + '</option>'; }).join('') +
@@ -178,6 +182,7 @@
         spec: spec.filter(function (r) { return r.k || r.v; }),
         sections: sections.filter(function (s) { return s.h || s.p; }),
         pdfLabel: app.querySelector('#f-pdflabel').value.trim(),
+        pdfPreviewSource: 'self',
         figureCaption: app.querySelector('#f-figcaption').value.trim(),
         figureSource: app.querySelector('#f-figsource').value,
         related: relHref ? { label: 'この企画のもとになった失敗', href: relHref, text: recoveredOptions.find(function (r) { return r.id + '.html' === relHref; }).filename + '　→' } : null
@@ -185,7 +190,7 @@
       if (!payload.title) { toast('タイトルを入力してください。', true); return; }
       var figInput = app.querySelector('#f-figure');
       if (figInput.files[0]) payload.figure = { caption: payload.figureCaption };
-      afterSave(submitEntry('proposal', id, payload, { figureImage: figInput, pdfFile: app.querySelector('#f-pdf') }), renderProposalsList);
+      afterSave(submitEntry('proposal', id, payload, { pdfPreview: app.querySelector('#f-pdfpreview'), figureImage: figInput, pdfFile: app.querySelector('#f-pdf') }), renderProposalsList);
     });
   }
 

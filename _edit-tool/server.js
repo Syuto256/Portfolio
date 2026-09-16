@@ -1,6 +1,6 @@
 'use strict';
 /*
- * 深夜遊戯 コンテンツ編集ツール ローカルサーバー
+ * Poro コンテンツ編集ツール ローカルサーバー
  * 外部npmパッケージは使用しない(Node標準ライブラリのみ)。
  * このサーバーはユーザー自身のPC上でのみ動作する編集専用ツールであり、
  * 公開されるサイト本体(index.html等)は生成後は完全な静的HTMLのまま。
@@ -192,6 +192,11 @@ function handleGetContent(req, res) {
 }
 
 function applyFileUploads(entryData, type, files, content, imgLabelPrefix) {
+  if (files.pdfPreview) {
+    if (files.pdfPreview.data.length > MAX_IMAGE_BYTES) throw new Error('PDFスクリーンショットが大きすぎます(上限3MB)。圧縮してから再度お試しください。');
+    entryData.pdfPreview = saveUpload(files.pdfPreview, ASSETS_IMG, 'assets/img');
+    appendLicenseRow(content, imgLabelPrefix + 'PDFプレビュー', entryData.pdfPreviewSource === 'ai' ? 'ai' : 'self');
+  }
   if (files.figureImage) {
     if (files.figureImage.data.length > MAX_IMAGE_BYTES) throw new Error('画像が大きすぎます(上限3MB)。圧縮してから再度お試しください。');
     var figPath = saveUpload(files.figureImage, ASSETS_IMG, 'assets/img');
@@ -364,7 +369,7 @@ server.on('error', function (err) {
 server.listen(PORT, function () {
   console.log('');
   console.log('=========================================================');
-  console.log(' 深夜遊戯 コンテンツ編集ツール が起動しました');
+  console.log(' Poro コンテンツ編集ツール が起動しました');
   console.log(' ブラウザで以下のアドレスを開いてください:');
   console.log(' http://localhost:' + PORT + '/editor.html');
   console.log('');

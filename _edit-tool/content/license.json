@@ -18,6 +18,18 @@
   ],
   "assets": [
     {
+      "name": "企画書PDFプレビュー",
+      "method": "本人の企画書PDFから作成",
+      "status": "企画書紹介に使用",
+      "protected": false
+    },
+    {
+      "name": ":Digital Helper ゲーム画面",
+      "method": "本人が参加したチーム制作ゲームの画面",
+      "status": "作品紹介に使用",
+      "protected": false
+    },
+    {
       "name": "ブラウン（案内役）",
       "method": "画像生成AIを使用して制作し、配色とサイズを本人が調整",
       "status": "暫定版。デザイナーへの依頼を予定",
@@ -34,6 +46,48 @@
       "method": "本人が作図",
       "status": "―",
       "protected": true
+    },
+    {
+      "name": "双子 サムネイル",
+      "method": "本人が作成",
+      "status": "―",
+      "protected": false
+    },
+    {
+      "name": "Morehit2 サムネイル",
+      "method": "本人が作成",
+      "status": "―",
+      "protected": false
+    },
+    {
+      "name": "双子 サムネイル",
+      "method": "本人が作成",
+      "status": "―",
+      "protected": false
+    },
+    {
+      "name": "双子 サムネイル",
+      "method": "本人が作成",
+      "status": "―",
+      "protected": false
+    },
+    {
+      "name": "たかし、人生ベット中 サムネイル",
+      "method": "本人が作成",
+      "status": "―",
+      "protected": false
+    },
+    {
+      "name": "零・回避 サムネイル",
+      "method": "本人が作成",
+      "status": "―",
+      "protected": false
+    },
+    {
+      "name": "猫は液体 図版",
+      "method": "本人が作成",
+      "status": "―",
+      "protected": false
     }
   ]
 }

@@ -1,6 +1,6 @@
 'use strict';
 /*
- * 深夜遊戯サイトの静的HTMLをコンテンツJSONから生成するテンプレート集。
+ * Poroサイトの静的HTMLをコンテンツJSONから生成するテンプレート集。
  * 既存の手書きページ(index.html / proposal-001.html / analysis-001.html /
  * works.html / profile.html / faq.html / recovered.html / recovered-001.html /
  * license.html)のマークアップ・クラス名を1つも変えずに文字列化している。
@@ -38,6 +38,7 @@ function head(title, description) {
     '<meta name="viewport" content="width=device-width, initial-scale=1">',
     '<title>' + esc(title) + '</title>',
     '<meta name="description" content="' + esc(description) + '">',
+    '<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 fill=%27%23234f73%27/%3E%3Cpath d=%27M16 5 27 16 16 27 5 16Z%27 fill=%27none%27 stroke=%27%23e8f1f5%27 stroke-width=%272%27/%3E%3C/svg%3E">',
     FONT_LINK,
     '</head>',
     '<body>',
@@ -48,7 +49,7 @@ function head(title, description) {
 }
 
 var NAV_ITEMS = [
-  { key: 'proposal', href: 'proposal-001.html', label: '企画書' },
+  { key: 'proposal', href: 'proposals.html', label: '企画書' },
   { key: 'analysis', href: 'analysis-001.html', label: '分析' },
   { key: 'works', href: 'works.html', label: '作ったゲーム' },
   { key: 'recovered', href: 'recovered.html', label: 'ボツ企画・失敗談' },
@@ -60,30 +61,14 @@ var CFG_ICON = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7 1h2v2H7z
 var MAIL_ICON = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1 3h14v10H1zM2 4v1h12V4zM3 6l5 4 5-4v1l-5 4-5-4z"/></svg>';
 
 function headerBar(opts) {
-  // opts: { isIndex, activeKey, isProfile }
   var contactHref = opts.isProfile ? '#contact' : 'profile.html#contact';
-  if (opts.isIndex) {
-    return [
-      '<header class="bar">',
-      '  <span class="logo">深夜遊戯</span>',
-      '  <span class="hours">23:00 - LATE</span>',
-      '  <div class="right">',
-      '    <button id="cfgBtn" aria-expanded="false" aria-controls="cfg">',
-      '      ' + CFG_ICON + '設定</button>',
-      '    <a href="' + contactHref + '">',
-      '      ' + MAIL_ICON + '連絡先</a>',
-      '  </div>',
-      '</header>'
-    ].join('\n');
-  }
   var navHtml = NAV_ITEMS.map(function (it) {
     var current = it.key === opts.activeKey ? ' aria-current="page"' : '';
     return '    <a href="' + it.href + '"' + current + '>' + it.label + '</a>';
   }).join('\n');
   return [
     '<header class="bar">',
-    '  <a class="logo" href="index.html">深夜遊戯</a>',
-    '  <span class="hours">23:00 - LATE</span>',
+    '  <a class="logo" href="index.html"><span>Poro</span><small>ゲーム制作</small></a>',
     '  <nav class="nav" aria-label="サイト内ナビゲーション">',
     navHtml,
     '  </nav>',
@@ -112,9 +97,9 @@ function cfgPanel() {
 function footerHtml(profileName, tail) {
   return [
     '<footer>',
-    '  <span>&copy; 2026 ' + esc(profileName) + ' ／ 深夜遊戯</span>',
-    '  <span class="mid"><a href="license.html">ライセンス</a><a href="#">更新履歴</a></span>',
-    '  <span class="tail">C:\\&gt; 深夜遊戯 / ' + esc(tail) + '</span>',
+    '  <span>&copy; 2026 ' + esc(profileName) + ' ／ Poro</span>',
+    '  <span class="mid"><a href="license.html">ライセンス</a><span>更新履歴は準備中</span></span>',
+    '  <span class="tail">好きなものの、その奥へ。</span>',
     '</footer>',
     '',
     '<script src="app.js" defer></script>',
@@ -158,7 +143,7 @@ function filesSidebar(documents, currentHref, shortDate) {
     '        <ul class="files">',
     items,
     '        </ul>',
-    '        <a class="openall" href="#">書類棚をすべて開く　→</a>',
+    '        <span class="openall">上の書類名から開けます</span>',
     '      </div>'
   ].join('\n');
 }
@@ -247,6 +232,19 @@ function actionsHtml(actions) {
   ].join('\n');
 }
 
+function proposalPdfHtml(entry) {
+  if (!entry.pdf) return '';
+  var preview = entry.pdfPreview
+    ? '<figure class="proposal-pdf-preview"><img src="' + esc(entry.pdfPreview) + '" alt="' + esc(entry.title) + 'の企画書プレビュー"></figure>'
+    : '<div class="proposal-pdf-placeholder" aria-hidden="true"><span>PDF</span><strong>' + esc(titleForFilename(entry.title)) + '</strong></div>';
+  return [
+    '        <section class="proposal-document" aria-label="企画書PDF">',
+    '          ' + preview,
+    '          <a class="proposal-file-open" href="' + esc(entry.pdf) + '" target="_blank" rel="noopener">' + esc(entry.pdfLabel || '企画書を開く（PDF）') + ' <span aria-hidden="true">↗</span></a>',
+    '        </section>'
+  ].join('\n');
+}
+
 function relatedHtml(related) {
   if (!related) return '';
   return [
@@ -258,7 +256,7 @@ function relatedHtml(related) {
 }
 
 // ================= INDEX =================
-function renderIndex(content) {
+function renderPreviousIndex(content) {
   var documents = buildDocuments(content);
   var recent = documents.filter(function (d) { return !d.isProfile; }).slice(0, 3);
   var recentCardsByHref = {};
@@ -287,7 +285,7 @@ function renderIndex(content) {
 
   var p = content.profile;
 
-  return head(p.name + ' ／ 深夜遊戯', 'ゲームプランナー志望のポートフォリオ。企画書・ゲーム分析・ボツ企画を掲載しています。') + '\n' +
+  return head(p.name + ' ／ Poro', 'ゲームプランナー志望のポートフォリオ。企画書・ゲーム分析・ボツ企画を掲載しています。') + '\n' +
     headerBar({ isIndex: true }) + '\n\n' +
     cfgPanel() + '\n\n' +
     '<main class="wrap">\n\n' +
@@ -326,7 +324,7 @@ function renderIndex(content) {
     '        </div>\n' +
     '      </div>\n\n' +
     '      <nav class="menu" aria-label="メインメニュー">\n' +
-    '        <a href="proposal-001.html"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 1h7l3 3v11H3zM4 2v12h8V5H9V2zM5 7h6v1H5zM5 9h6v1H5zM5 11h4v1H5z"/></svg><span class="t">企画書</span><span class="d">ゲーム企画の提案</span></a>\n' +
+    '        <a href="proposals.html"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 1h7l3 3v11H3zM4 2v12h8V5H9V2zM5 7h6v1H5zM5 9h6v1H5zM5 11h4v1H5z"/></svg><span class="t">企画書</span><span class="d">ゲーム企画の提案</span></a>\n' +
     '        <a href="analysis-001.html"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 13h12v1H2zM3 8h2v4H3zM6 5h2v7H6zM9 9h2v3H9zM12 3h2v9h-2z"/></svg><span class="t">ゲーム分析</span><span class="d">作品の分析と考察</span></a>\n' +
     '        <a href="works.html"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 5h12v7H2zM1 6h1v5H1zM14 6h1v5h-1zM4 7h1v1H4zM3 8h1v1H3zM5 8h1v1H5zM4 9h1v1H4zM10 7h1v1h-1zM12 9h1v1h-1zM11 8h1v1h-1z"/></svg><span class="t">作ったゲーム</span><span class="d">制作したゲーム一覧</span></a>\n' +
     '        <a href="recovered.html"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 1h4v1H6zM2 3h12v1H2zM4 5h8v10H4zM5 6v8h6V6zM6 7h1v6H6zM9 7h1v6H9z"/></svg><span class="t">ボツ企画・失敗談</span><span class="d">失敗から学んだこと</span></a>\n' +
@@ -355,18 +353,16 @@ function renderIndex(content) {
 function renderDoc(entry, opts) {
   // opts: { kind: 'proposal'|'analysis', profileName, documents, breadcrumbLabel }
   var actions = [];
-  if (opts.kind === 'proposal' && entry.pdf) {
-    actions.push({ label: entry.pdfLabel || '企画書を読む（PDF）', href: entry.pdf, sub: false, newTab: true });
-  }
   (entry.extraLinks || []).forEach(function (l) { actions.push({ label: l.label, href: l.href, sub: !!l.sub, newTab: false }); });
+  var proposalPdf = opts.kind === 'proposal' ? proposalPdfHtml(entry) : '';
 
   var crumbParts = [
     { label: 'C:\\>', href: 'index.html' },
-    { label: opts.kind === 'proposal' ? 'proposals' : 'analysis', href: '#' },
+    { label: opts.kind === 'proposal' ? 'proposals' : 'analysis', href: 'index.html' },
     { label: entry.id.replace('-', '_') }
   ];
 
-  return head(entry.title + ' ／ ' + (opts.kind === 'proposal' ? '企画書' : 'ゲーム分析') + ' ／ 深夜遊戯', entry.lead) + '\n' +
+  return head(entry.title + ' ／ ' + (opts.kind === 'proposal' ? '企画書' : 'ゲーム分析') + ' ／ Poro', entry.lead) + '\n' +
     headerBar({ activeKey: opts.kind }) + '\n\n' +
     cfgPanel() + '\n\n' +
     '<main class="wrap">\n  <div class="top">\n\n' +
@@ -376,6 +372,7 @@ function renderDoc(entry, opts) {
     '      <article class="doc">\n' +
     '        <h1 class="doc-title">' + esc(entry.title) + '</h1>\n' +
     '        <p class="doc-lead">' + esc(entry.lead) + '</p>\n\n' +
+    (proposalPdf ? proposalPdf + '\n\n' : '') +
     specTable(entry.spec) + '\n\n' +
     (figureBlock(entry.figure) ? figureBlock(entry.figure) + '\n\n' : '') +
     sectionsHtml(entry.sections) + '\n\n' +
@@ -388,13 +385,52 @@ function renderDoc(entry, opts) {
     footerHtml(opts.profileName, entry.id.replace('-', '_'));
 }
 
+// ================= 企画書一覧 =================
+function renderProposals(content) {
+  var cards = content.proposals.map(function (p, index) {
+    var genreRow = (p.spec || []).find(function (row) { return /ジャンル/.test(row.k || ''); });
+    var thumb = p.pdfPreview || (p.figure && p.figure.image) || '';
+    var media = thumb
+      ? '<img src="' + esc(thumb) + '" alt="' + esc(p.title) + 'の企画書サムネイル" loading="lazy">'
+      : '<div class="proposal-card-placeholder"><span>PLANNING</span><strong>' + esc(p.title) + '</strong></div>';
+    return [
+      '      <a class="proposal-card" href="' + esc(p.id) + '.html">',
+      '        <figure class="proposal-card-media">' + media + '</figure>',
+      '        <div class="proposal-card-body">',
+      '          <p class="proposal-card-no">PROPOSAL ' + String(index + 1).padStart(2, '0') + (p.date ? ' / ' + esc(p.date) : '') + '</p>',
+      '          <h2>' + esc(p.title) + '</h2>',
+      (p.lead ? '          <p>' + esc(p.lead) + '</p>' : ''),
+      (genreRow ? '          <span>' + esc(genreRow.v) + '</span>' : ''),
+      '          <b>企画書の中身を見る →</b>',
+      '        </div>',
+      '      </a>'
+    ].filter(Boolean).join('\n');
+  }).join('\n\n');
+
+  return head('企画書一覧 ／ Poro', 'ゲーム企画のタイトル、世界観、企画書を一覧で紹介します。') + '\n' +
+    headerBar({ activeKey: 'proposal' }) + '\n\n' +
+    cfgPanel() + '\n\n' +
+    '<main class="wrap">\n' +
+    '  <div class="pane">\n' +
+    crumb([{ label: 'C:\\>', href: 'index.html' }, { label: 'proposals' }]) + '\n\n' +
+    '    <h1 class="doc-title">企画書</h1>\n' +
+    '    <p class="doc-lead">企画の入口を並べています。気になった一枚から、考えた背景とPDFの中身へ。</p>\n' +
+    '    <p class="brown-note" data-typewriter><span>&gt; ' + content.proposals.length + '件の企画書があります。</span></p>\n\n' +
+    '    <div class="proposal-grid">\n' +
+    (cards || '      <p>企画書は準備中です。</p>') + '\n' +
+    '    </div>\n' +
+    '  </div>\n' +
+    '</main>\n\n' +
+    footerHtml(content.profile.name, 'proposals');
+}
+
 // ================= 作ったゲーム =================
 function renderWorks(content) {
   var items = content.works.map(function (w) {
     var actionsArr = [];
-    if (w.playUrl) actionsArr.push('          <a class="cta" href="' + esc(w.playUrl) + '" target="_blank" rel="noopener">' + esc(w.playLabel || '今すぐ遊ぶ') + '</a>');
-    else actionsArr.push('          <a class="cta sub" href="#">' + esc(w.playLabel || '準備中') + '</a>');
-    if (w.noteUrl) actionsArr.push('          <a class="cta sub" href="' + esc(w.noteUrl) + '">' + esc(w.noteLabel || '制作メモ') + '</a>');
+    if (w.playUrl && w.playUrl !== '#') actionsArr.push('          <a class="cta" href="' + esc(w.playUrl) + '" target="_blank" rel="noopener">' + esc(w.playLabel || '今すぐ遊ぶ') + '</a>');
+    else actionsArr.push('          <span class="cta sub is-disabled">' + esc(w.playLabel || '準備中') + '</span>');
+    if (w.noteUrl && w.noteUrl !== '#') actionsArr.push('          <a class="cta sub" href="' + esc(w.noteUrl) + '">' + esc(w.noteLabel || '制作メモ') + '</a>');
     var thumb = w.thumb ? ('        <figure class="figure"><img src="' + esc(w.thumb) + '" alt=""></figure>') : '';
     return [
       '      <div class="work">',
@@ -409,7 +445,7 @@ function renderWorks(content) {
     ].filter(Boolean).join('\n');
   }).join('\n\n');
 
-  return head('作ったゲーム ／ 深夜遊戯', '公開済みのゲームと実験的な作品。ブラウザで遊べます。') + '\n' +
+  return head('作ったゲーム ／ Poro', '公開済みのゲームと実験的な作品。ブラウザで遊べます。') + '\n' +
     headerBar({ activeKey: 'works' }) + '\n\n' +
     cfgPanel() + '\n\n' +
     '<main class="wrap">\n' +
@@ -439,7 +475,7 @@ function renderProfile(content) {
     return '        <li><b>' + esc(h.b) + '</b><span>' + esc(h.t) + '</span></li>';
   }).join('\n');
 
-  return head('プロフィール ／ 深夜遊戯', 'ゲームプランナー志望。経歴・スキル・連絡先。') + '\n' +
+  return head('プロフィール ／ Poro', 'ゲームプランナー志望。経歴・スキル・連絡先。') + '\n' +
     headerBar({ activeKey: 'profile', isProfile: true }) + '\n\n' +
     cfgPanel() + '\n\n' +
     '<main class="wrap">\n' +
@@ -483,7 +519,7 @@ function renderFaq(content) {
   var items = content.faq.map(function (f) {
     return '      <details><summary>' + esc(f.q) + '</summary><p class="a">' + esc(f.a) + '</p></details>';
   }).join('\n');
-  return head('よくある質問 ／ 深夜遊戯', 'ポートフォリオについてよくいただく質問への回答。') + '\n' +
+  return head('よくある質問 ／ Poro', 'ポートフォリオについてよくいただく質問への回答。') + '\n' +
     headerBar({ activeKey: 'faq' }) + '\n\n' +
     cfgPanel() + '\n\n' +
     '<main class="wrap">\n' +
@@ -504,9 +540,9 @@ function renderFaq(content) {
 // ================= ボツ企画・失敗談(一覧) =================
 function renderRecoveredList(content) {
   var drawers = content.recovered.map(function (r) {
-    var href = r.detail ? (r.id + '.html') : '#';
+    var href = r.detail ? (r.id + '.html') : null;
     return [
-      '      <a class="drawer" href="' + href + '">',
+      '      <' + (href ? 'a' : 'article') + ' class="drawer"' + (href ? ' href="' + href + '"' : '') + '>',
       '        <span class="handle"><i aria-hidden="true"></i><span class="no">' + esc(r.id.replace('-', '_')) + '</span></span>',
       '        <span class="in">',
       '          <h3>' + esc(r.title) + '</h3>',
@@ -514,11 +550,11 @@ function renderRecoveredList(content) {
       '          <p>' + esc(r.summary) + '</p>',
       '          <span class="kind">' + esc(r.kind) + '</span>',
       '        </span>',
-      '      </a>'
+      '      </' + (href ? 'a' : 'article') + '>'
     ].join('\n');
   }).join('\n\n');
 
-  return head('ボツ企画・失敗談 ／ 深夜遊戯', '途中でやめた企画を、判断の記録として残しています。') + '\n' +
+  return head('ボツ企画・失敗談 ／ Poro', '途中でやめた企画を、判断の記録として残しています。') + '\n' +
     headerBar({ activeKey: 'recovered' }) + '\n\n' +
     cfgPanel() + '\n\n' +
     '<main class="wrap">\n' +
@@ -540,7 +576,7 @@ function renderRecoveredDetail(entry, opts) {
   if (d.related) actions.push({ label: d.related.text, href: d.related.href, sub: false, newTab: false });
   actions.push({ label: '書庫に戻る', href: 'recovered.html', sub: true, newTab: false });
 
-  return head(entry.title + ' ／ ボツ企画 ／ 深夜遊戯', d.lead) + '\n' +
+  return head(entry.title + ' ／ ボツ企画 ／ Poro', d.lead) + '\n' +
     headerBar({ activeKey: 'recovered' }) + '\n\n' +
     cfgPanel() + '\n\n' +
     '<main class="wrap">\n  <div class="top">\n' +
@@ -568,7 +604,7 @@ function renderLicense(content) {
     return '          <tr><td class="nm">' + esc(a.name) + '</td><td>' + esc(a.method) + '</td><td>' + esc(a.status) + '</td></tr>';
   }).join('\n');
 
-  return head('ライセンス ／ 深夜遊戯', '使用しているフォント・素材と、その出所の表記。') + '\n' +
+  return head('ライセンス ／ Poro', '使用しているフォント・素材と、その出所の表記。') + '\n' +
     headerBar({ activeKey: null }) + '\n\n' +
     cfgPanel() + '\n\n' +
     '<main class="wrap">\n' +
@@ -600,11 +636,35 @@ function renderLicense(content) {
 }
 
 // ================= サイト全体を再生成 =================
+function redirectHtml(title, href) {
+  return [
+    '<!doctype html>',
+    '<html lang="ja">',
+    '<head>',
+    '<meta charset="utf-8">',
+    '<meta name="viewport" content="width=device-width, initial-scale=1">',
+    '<meta http-equiv="refresh" content="0; url=' + esc(href) + '">',
+    '<title>' + esc(title) + '</title>',
+    '</head>',
+    '<body><p><a href="' + esc(href) + '">企画書を開く</a></p></body>',
+    '</html>'
+  ].join('\n');
+}
+
 function renderSite(content) {
   var documents = buildDocuments(content);
   var files = {};
+  var firstProposalHref = content.proposals.length ? content.proposals[0].id + '.html' : 'index.html';
+  var firstAnalysisHref = content.analyses.length ? content.analyses[0].id + '.html' : 'index.html';
+
+  // 追加・削除で連番が変わっても、共通ナビゲーションは現在の先頭ページを指す。
+  NAV_ITEMS.forEach(function (item) {
+    if (item.key === 'proposal') item.href = 'proposals.html';
+    if (item.key === 'analysis') item.href = firstAnalysisHref;
+  });
 
   files['index.html'] = renderIndex(content);
+  files['proposals.html'] = renderProposals(content);
   files['works.html'] = renderWorks(content);
   files['profile.html'] = renderProfile(content);
   files['faq.html'] = renderFaq(content);
@@ -614,6 +674,10 @@ function renderSite(content) {
   content.proposals.forEach(function (p) {
     files[p.id + '.html'] = renderDoc(p, { kind: 'proposal', profileName: content.profile.name, documents: documents });
   });
+  // 古いブックマークやローカルの file:// URLを壊さないための入口。
+  if (!files['proposal-001.html'] && content.proposals.length) {
+    files['proposal-001.html'] = redirectHtml('企画書へ移動します', firstProposalHref);
+  }
   content.analyses.forEach(function (a) {
     files[a.id + '.html'] = renderDoc(a, { kind: 'analysis', profileName: content.profile.name, documents: documents });
   });
@@ -627,3 +691,41 @@ function renderSite(content) {
 }
 
 module.exports = { renderSite: renderSite, esc: esc };
+
+function renderIndex(content) {
+  var p=content.profile;
+  var games=content.works || [];
+  var feature=games.find(function(w){return !!w.thumb;}) || games[0] || null;
+  var proposal=(content.proposals || [])[0] || null;
+  var analysis=(content.analyses || [])[0] || null;
+  function valid(u){return u && u!=='#' && !/^\s*(javascript|data):/i.test(u);}
+  var gameMedia=feature && feature.thumb
+    ? '<img src="'+esc(feature.thumb)+'" alt="'+esc(feature.title)+'のゲーム画面" width="1280" height="720" loading="eager">'
+    : '<div class="game-placeholder"><strong>GAME SCREEN</strong><span>画像は編集ツールから追加できます</span></div>';
+  var gameActions=feature && valid(feature.playUrl)
+    ? '<a class="showcase-primary" href="'+esc(feature.playUrl)+'" target="_blank" rel="noopener">ブラウザで遊ぶ ↗</a>'
+    : '<span class="showcase-muted">プレイ版は準備中です</span>';
+  var proposalTitle=proposal ? proposal.title : '企画書を準備しています';
+  var proposalLead=proposal ? proposal.lead : 'タイトルと世界観が伝わる表紙から、遊びのアイデアへ。';
+  var analysisTitle=analysis ? analysis.title : 'ゲーム分析を準備しています';
+  var analysisLead=analysis ? analysis.lead : '画面で確認できることから、遊びの仕組みを読み解きます。';
+  var slideGame='<article class="showcase-slide is-active" data-showcase-slide="0" aria-hidden="false"><div class="showcase-media">'+gameMedia+'</div><div class="showcase-copy"><p class="showcase-kicker">PLAY / 作ったゲーム</p><h2>'+esc(feature ? feature.title : '制作したゲーム')+'</h2><p>'+esc(feature ? feature.body : '作品を準備しています。')+'</p><p class="showcase-meta">'+esc(feature ? feature.meta : '')+'</p><div class="showcase-actions">'+gameActions+'<a href="works.html">作品一覧を見る →</a></div></div></article>';
+  var slideProposal='<article class="showcase-slide" data-showcase-slide="1" aria-hidden="true"><div class="showcase-media"><div class="proposal-cover"><small>PLANNING / COVER</small><strong>'+esc(proposalTitle)+'</strong><span>企画の表紙と世界観</span></div></div><div class="showcase-copy"><p class="showcase-kicker">PLANNING / 企画書</p><h2>'+esc(proposalTitle)+'</h2><p>'+esc(proposalLead)+'</p><div class="showcase-actions"><a class="showcase-primary" href="proposals.html">企画書一覧を見る →</a></div></div></article>';
+  var slideAnalysis='<article class="showcase-slide" data-showcase-slide="2" aria-hidden="true"><div class="showcase-media"><div class="analysis-board"><small>ANALYSIS NOTE</small><strong>'+esc(analysisTitle)+'</strong><span>観察 → 仮説 → 自分なら</span></div></div><div class="showcase-copy"><p class="showcase-kicker">ANALYSIS / ゲーム分析</p><h2>'+esc(analysisTitle)+'</h2><p>'+esc(analysisLead)+'</p><div class="showcase-actions">'+(analysis?'<a class="showcase-primary" href="'+esc(analysis.id)+'.html">分析を読む →</a>':'')+'</div></div></article>';
+  var icon=p.photo?'<img src="'+esc(p.photo)+'" alt="'+esc(p.name)+'のアイコン">':'<span>MY<br>ICON</span>';
+  var homeLinks=[
+    ['works.html','作ったゲーム','遊べる作品と制作内容'],
+    ['proposals.html','企画書','世界観と遊びの設計'],
+    [analysis?analysis.id+'.html':'#','ゲーム分析','遊びを読み解く記録'],
+    ['recovered.html','没企画・失敗談','判断と学びの記録'],
+    ['profile.html','プロフィール','経歴と制作への思い'],
+    ['faq.html','FAQ','よくある質問']
+  ].map(function(item){return '<a href="'+esc(item[0])+'"><strong>'+esc(item[1])+'</strong><span>'+esc(item[2])+'</span></a>';}).join('');
+  var main='<main class="studio-home">'+
+    '<section class="home-intro"><p>PORTFOLIO / '+esc(p.role)+'</p><h1>ゲームをつくっています。</h1><span>作ったものと、その背景にある考えを。</span></section>'+
+    '<section class="showcase" id="showcase" aria-roledescription="カルーセル" aria-label="制作の展示ケース"><div class="showcase-head"><strong>制作の展示ケース</strong><span id="showcase-status">12秒ごとに切り替え</span></div><div class="showcase-stage">'+slideGame+slideProposal+slideAnalysis+'</div><div class="showcase-controls"><div role="group" aria-label="展示を選ぶ"><button type="button" data-showcase-select="0" aria-pressed="true">ゲーム</button><button type="button" data-showcase-select="1" aria-pressed="false">企画書</button><button type="button" data-showcase-select="2" aria-pressed="false">ゲーム分析</button></div><div><button type="button" id="showcase-prev">← 前へ</button><span id="showcase-count">01 / 03</span><button type="button" id="showcase-next">次へ →</button><button type="button" id="showcase-pause">自動切替を停止</button></div></div></section>'+
+    '<section class="creator-signoff" aria-label="制作者からの一言"><div class="creator-icon">'+icon+'</div><div><p>'+esc(p.name)+' / この部屋の持ち主</p><strong>プレイヤーに、どんな思いをしてほしいか。<br>そこからゲームを考えています。</strong></div><a href="profile.html">プロフィールへ →</a></section>'+
+    '<nav class="home-links" aria-label="ポートフォリオの内容">'+homeLinks+'</nav>'+
+    '</main>';
+  return head(p.name+' ／ ゲーム制作ポートフォリオ','制作したゲーム、企画書、ゲーム分析、失敗から得た学びを紹介します。')+'\n'+headerBar({isIndex:true})+'\n\n'+cfgPanel()+'\n\n'+main+'\n\n'+footerHtml(p.name,'TOP');
+}
