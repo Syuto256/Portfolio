@@ -428,7 +428,7 @@ function renderProposals(content) {
 function renderWorks(content) {
   var items = content.works.map(function (w) {
     var actionsArr = [];
-    if (w.playUrl && w.playUrl !== '#') actionsArr.push('          <a class="cta" href="' + esc(w.playUrl) + '" target="_blank" rel="noopener">' + esc(w.playLabel || '今すぐ遊ぶ') + '</a>');
+    if (/^https?:\/\//i.test(w.playUrl || '')) actionsArr.push('          <a class="cta" href="' + esc(w.playUrl) + '" target="_blank" rel="noopener">' + esc(w.playLabel || '今すぐ遊ぶ') + '</a>');
     else actionsArr.push('          <span class="cta sub is-disabled">' + esc(w.playLabel || '準備中') + '</span>');
     if (w.noteUrl && w.noteUrl !== '#') actionsArr.push('          <a class="cta sub" href="' + esc(w.noteUrl) + '">' + esc(w.noteLabel || '制作メモ') + '</a>');
     var thumb = w.thumb ? ('        <figure class="figure"><img src="' + esc(w.thumb) + '" alt=""></figure>') : '';
